@@ -11,7 +11,7 @@
 	<groupId>com.collazos</groupId>
 	<artifactId>collaboratorsmanagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>back_collaborators_management_app</name>
+	<name>collaborators_management</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

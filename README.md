@@ -128,7 +128,7 @@ El frontend se construyó con Angular, utilizando una arquitectura moderna de **
 3.  Crear una base de datos en MySQL llamada `collaborators_management`.
 4.  Configurar las credenciales de la base de datos en el archivo `src/main/resources/application.properties`.
 5.  Ejecutar la aplicación. Spring Boot creará las tablas automáticamente gracias a la configuración de Hibernate.
-6.  Opcional: Ejecutar los scripts SQL proporcionados para poblar la base de datos con datos de prueba iniciales.
+6.  Ejecutar los scripts SQL proporcionados (`docs\data base\scripts_SQL.txt`) para poblar la base de datos con datos de prueba iniciales.
 
 ### Configuración del Frontend
 

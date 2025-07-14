@@ -1,0 +1,72 @@
+
+-- # Inserta 5 tipos de onboarding
+INSERT INTO onboardingtype (name, category) VALUES
+('General', 'general'),
+('Cap Devops', 'tecnico'),
+('Cap Developer', 'tecnico'),
+('Cap Test', 'tecnico'),
+('Journey To Cloud', 'tecnico');
+
+-- # Inserta 20 colaboradores
+INSERT INTO collaborator (full_name, email, start_date, welcome_status, technical_status) VALUES
+('Ana Torres', 'ana.torres@example.com', '2025-01-15', 'Sin asignar', 'Sin asignar'),
+('Luis Morales', 'luis.morales@example.com', '2025-01-20', 'Sin asignar', 'Sin asignar'),
+('Sofia Castro', 'sofia.castro@example.com', '2025-02-10', 'Sin asignar', 'Sin asignar'),
+('Javier Rios', 'javier.rios@example.com', '2025-02-18', 'Sin asignar', 'Sin asignar'),
+('Valeria Guzman', 'valeria.guzman@example.com', '2025-03-05', 'Sin asignar', 'Sin asignar'),
+('Mateo Ortiz', 'mateo.ortiz@example.com', '2025-03-22', 'Sin asignar', 'Sin asignar'),
+('Camila Flores', 'camila.flores@example.com', '2025-04-01', 'Sin asignar', 'Sin asignar'),
+('Diego Vargas', 'diego.vargas@example.com', '2025-04-19', 'Sin asignar', 'Sin asignar'),
+('Isabella Romero', 'isabella.romero@example.com', '2025-05-08', 'Sin asignar', 'Sin asignar'),
+('Sebastian Soto', 'sebastian.soto@example.com', '2025-05-25', 'Sin asignar', 'Sin asignar'),
+('Mariana Paredes', 'mariana.paredes@example.com', '2025-06-11', 'Sin asignar', 'Sin asignar'),
+('Andres Navarro', 'andres.navarro@example.com', '2025-06-28', 'Sin asignar', 'Sin asignar'),
+('Gabriela Leon', 'gabriela.leon@example.com', '2025-07-03', 'Sin asignar', 'Sin asignar'),
+('Matias Benitez', 'matias.benitez@example.com', '2025-07-10', 'Sin asignar', 'Sin asignar'),
+('Daniela Mejia', 'daniela.mejia@example.com', '2025-08-02', 'Sin asignar', 'Sin asignar'),
+('Nicolas Herrera', 'nicolas.herrera@example.com', '2025-08-14', 'Sin asignar', 'Sin asignar'),
+('Paula Gil', 'paula.gil@example.com', '2025-09-01', 'Sin asignar', 'Sin asignar'),
+('Samuel Cardenas', 'samuel.cardenas@example.com', '2025-09-17', 'Sin asignar', 'Sin asignar'),
+('Renata Marin', 'renata.marin@example.com', '2025-10-04', 'Sin asignar', 'Sin asignar'),
+('Felipe Duran', 'felipe.duran@example.com', '2025-10-21', 'Sin asignar', 'Sin asignar');
+
+-- # Crear 24 sesiones (4 generales y 20 técnicas) distribuidas a lo largo del próximo año
+INSERT INTO onboardingsession (onboarding_type_id, start_date, end_date, capacity) VALUES
+-- # Sesiones Generales (ID: 1, Capacidad: 50, Duración: 3 días)
+(1, '2025-08-11', '2025-08-13', 50), -- Q3 2025
+(1, '2025-11-10', '2025-11-12', 50), -- Q4 2025
+(1, '2026-02-09', '2026-02-11', 50), -- Q1 2026
+(1, '2026-05-11', '2026-05-13', 50), -- Q2 2026
+
+-- ## Julio 2025
+(2, '2025-07-21', '2025-07-27', 8),  -- Devops
+(3, '2025-07-28', '2025-08-01', 10), -- Developer
+-- ## Agosto 2025
+(4, '2025-08-18', '2025-08-22', 7),  -- Test
+(5, '2025-08-25', '2025-08-31', 9),  -- J2C
+-- ## Septiembre 2025
+(2, '2025-09-15', '2025-09-21', 6),  -- Devops
+(3, '2025-09-22', '2025-09-26', 10), -- Developer
+-- ## Octubre 2025
+(4, '2025-10-20', '2025-10-26', 8),  -- Test
+(5, '2025-10-27', '2025-10-31', 5),  -- J2C
+-- ## Noviembre 2025
+(2, '2025-11-17', '2025-11-21', 9),  -- Devops
+(3, '2025-11-24', '2025-11-30', 7),  -- Developer
+-- ## Diciembre 2025
+(4, '2025-12-08', '2025-12-12', 10), -- Test
+-- ## Enero 2026
+(5, '2026-01-12', '2026-01-18', 8),  -- J2C
+-- ## Febrero 2026
+(2, '2026-02-16', '2026-02-20', 7),  -- Devops
+-- ## Marzo 2026
+(3, '2026-03-09', '2026-03-15', 10), -- Developer
+(4, '2026-03-23', '2026-03-27', 6),  -- Test
+-- ## Abril 2026
+(5, '2026-04-13', '2026-04-19', 9),  -- J2C
+(2, '2026-04-27', '2026-05-01', 8),  -- Devops
+-- ## Mayo 2026
+(3, '2026-05-18', '2026-05-22', 10), -- Developer
+(4, '2026-05-25', '2026-05-31', 7),  -- Test
+-- ## Junio 2026
+(5, '2026-06-15', '2026-06-21', 9);  -- J2C

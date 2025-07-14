@@ -1,0 +1,33 @@
+.container {
+  background-color: --bb-gray-carbon-50;
+}
+.app-navbar {
+  background-color: var(--bb-primary-midnight-800);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.app-navbar-brand {
+  font-family: var(--font-family-brand);
+  color: var(--bb-primary-white);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.app-nav-link {
+  font-family: var(--font-family-product);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--bb-primary-white);
+    cursor: pointer;
+  }
+
+  &.active {
+    color: var(--bb-primary-white);
+    font-weight: 500;
+  }
+}
+

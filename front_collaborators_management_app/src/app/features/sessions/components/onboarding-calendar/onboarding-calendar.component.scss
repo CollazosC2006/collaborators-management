@@ -1,0 +1,74 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Permite que el host crezca */
+  min-width: 0;   /* Evita problemas de desbordamiento en contenedores flex */
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* El contenedor interno también debe crecer */
+}
+
+.calendar-card {
+  padding: 1.5rem;
+  border: 1px solid var(--bb-gray-carbon-200);
+  border-radius: 8px;
+  background-color: var(--bb-primary-white);
+  height: 100%;
+  display: flex; /* La tarjeta se convierte en un contenedor flex */
+  flex-direction: column;
+}
+
+/* --- Sobrescritura de Estilos de FullCalendar --- */
+
+/* Se asegura de que el propio componente FullCalendar crezca para llenar la tarjeta */
+:host ::ng-deep full-calendar {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Estilo para los botones (prev, next, today, etc.) */
+:host ::ng-deep .fc .fc-button-primary {
+  background-color: var(--bb-blue-midnight-800) !important;
+  border-color: var(--bb-blue-midnight-800) !important;
+  font-family: var(--font-family-product);
+  font-weight: 500;
+  box-shadow: none !important;
+}
+
+:host ::ng-deep .fc .fc-button-primary:hover {
+  background-color: var(--bb-blue-midnight-900) !important;
+  border-color: var(--bb-blue-midnight-900) !important;
+}
+
+:host ::ng-deep .fc .fc-button-primary:disabled {
+  background-color: var(--bb-gray-carbon-400) !important;
+  border-color: var(--bb-gray-carbon-400) !important;
+}
+
+/* Estilo para el título del calendario */
+:host ::ng-deep .fc .fc-toolbar-title {
+  font-family: var(--font-family-brand);
+  font-size: 28px;
+  color: var(--bb-gray-carbon-900);
+}
+
+/* Estilo para la cabecera de los días */
+:host ::ng-deep .fc-col-header-cell-cushion {
+  font-family: var(--font-family-product);
+  font-weight: 500;
+  color: var(--bb-gray-carbon-800);
+}
+
+/* Estilo para los números de los días */
+:host ::ng-deep .fc-daygrid-day-number {
+  color: var(--bb-gray-carbon-900);
+}
+
+/* Estilo para el fondo del día de hoy */
+:host ::ng-deep .fc .fc-day-today {
+  background-color: var(--bb-blue-midnight-50) !important;
+}

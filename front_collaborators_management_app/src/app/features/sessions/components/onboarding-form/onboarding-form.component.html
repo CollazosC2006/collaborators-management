@@ -1,0 +1,54 @@
+<div class="form-container">
+  <div *ngIf="!isFormVisible" class="text-center">
+    <button class="btn btn-primary btn-lg" (click)="showForm()">Crear Nueva Sesión</button>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #sessionForm="ngForm" *ngIf="isFormVisible">
+    <div class="card form-card">
+      <h3 class="h7 text-primary-hierarchy mb-4">Nueva Sesión de Onboarding</h3>
+
+      <div class="row g-4">
+        <div class="col-12">
+          <label for="category" class="form-label">Tipo de Onboarding</label>
+          <select id="category" name="category" class="form-select" [(ngModel)]="selectedCategory" required>
+            <option value="" disabled>Seleccione una categoría...</option>
+            <option value="general">Onboarding General de Bienvenida</option>
+            <option value="tecnico">Onboarding Técnico</option>
+          </select>
+        </div>
+
+        <ng-container *ngIf="selectedCategory === 'tecnico'">
+          <div class="col-md-6">
+            <label for="technicalType" class="form-label">Capítulo Técnico</label>
+            <select id="technicalType" name="technicalType" class="form-select" [(ngModel)]="selectedTechnicalTypeId" required>
+              <option [ngValue]="null" disabled>Seleccione un tipo...</option>
+              <option *ngFor="let type of technicalTypes" [value]="type.id">{{ type.name }}</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="duration" class="form-label">Duración (días laborales)</label>
+            <select id="duration" name="duration" class="form-select" [(ngModel)]="selectedDuration" required>
+              <option *ngFor="let days of durationOptions" [value]="days">{{ days }} días</option>
+            </select>
+          </div>
+        </ng-container>
+
+        <div class="col-md-6" *ngIf="selectedCategory">
+          <label for="startDate" class="form-label">Fecha de Inicio</label>
+          <input type="date" id="startDate" name="startDate" class="form-control"
+                 [(ngModel)]="startDate"
+                 (ngModelChange)="validateStartDate()"
+                 [min]="minDate" required>
+          <div *ngIf="isStartDateInvalid" class="form-error-text mt-2">
+            La fecha de inicio no puede ser un fin de semana.
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end mt-5 action-buttons">
+        <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!sessionForm.form.valid || !startDate || isStartDateInvalid">Crear Sesión</button>
+      </div>
+    </div>
+  </form>
+</div>

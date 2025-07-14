@@ -1,0 +1,154 @@
+/* Paleta de Colores del Banco de Bogotá
+  Definida como CSS Custom Properties para uso global en la aplicación Angular.
+  Coloca este código en tu archivo `styles.scss` principal.
+*/
+
+:root {
+  /* Paleta Primaria */
+  --bb-primary-midnight-800: #0043A9;
+  --bb-primary-carbon-900: #000000;
+  --bb-primary-white: #FFFFFF;
+
+  /* Variantes de Paleta Azul */
+  --bb-blue-midnight-900: #00317E; /* Hover en botones, links */
+  --bb-blue-midnight-800: #0043A9; /* Color interactivo principal */
+  --bb-blue-midnight-700: #1054B7; /* Backgrounds no interactivos */
+  --bb-blue-midnight-600: #4D86D4; /* Borde de estado focus */
+  --bb-blue-midnight-400: #94BAE9;
+  --bb-blue-midnight-300: #B0CDF1; /* Background en estado pressed */
+  --bb-blue-midnight-200: #CEE1F8; /* Background hover en componentes */
+  --bb-blue-midnight-50: #F6FAFF;  /* Backgrounds generales */
+
+  /* Variantes de Paleta Gris */
+  --bb-gray-carbon-900: #000000; /* Texto de títulos */
+  --bb-gray-carbon-800: #444444; /* Texto de párrafos */
+  --bb-gray-carbon-700: #666666; /* Borde en estado hover */
+  --bb-gray-carbon-600: #808080; /* Placeholders, texto inactivo */
+  --bb-gray-carbon-400: #B3B3B3; /* Background deshabilitado, bordes de inputs */
+  --bb-gray-carbon-300: #CCCCCC;
+  --bb-gray-carbon-200: #E6E6E6; /* Bordes y backgrounds inactivos */
+  --bb-gray-carbon-50: #F2F2F2;  /* Backgrounds */
+
+  /* Paleta Semántica - Positivo (Success) */
+  --bb-semantic-success-900: #105C00;
+  --bb-semantic-success-800: #198500;
+  --bb-semantic-success-500: #95E077;
+  --bb-semantic-success-100: #ECFFE2;
+
+  /* Paleta Semántica - Alerta (Warning) */
+  --bb-semantic-warning-900: #773E00;
+  --bb-semantic-warning-800: #B15C00;
+  --bb-semantic-warning-500: #ECC192;
+  --bb-semantic-warning-100: #FFF0E0;
+
+  /* Paleta Semántica - Error */
+  --bb-semantic-error-900: #940700;
+  --bb-semantic-error-800: #C94740;
+  --bb-semantic-error-500: #EDA4A1;
+  --bb-semantic-error-100: #FFE7E6;
+
+  /* Paleta Semántica - Informativo (Info) */
+  --bb-semantic-info-900: #004F99;
+  --bb-semantic-info-800: #2076C2;
+  --bb-semantic-info-500: #9AC7EB;
+  --bb-semantic-info-100: #EDF7FF;
+
+  /* Paleta Corporativa */
+  --bb-brand-blue: #14327D;
+  --bb-brand-yellow: #FFBE00;
+  --bb-brand-red: #CD3232;
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+:root {
+  --font-family-brand: 'Kiffo BDB', sans-serif; /* Fuente corporativa con fallback */
+  --font-family-product: 'Roboto', sans-serif; /* Fuente de producto/sistema */
+}
+
+
+
+.h1, .h2, .h3, .h4, .h5, .h6, .h7, .h8 {
+  font-family: var(--font-family-brand);
+  font-weight: 600; /* Semibold para títulos */
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+/* H1 */
+.h1 { font-size: 40px; } /* Mobile */
+@media (min-width: 768px) { .h1 { font-size: 48px; } } /* Tablet */
+@media (min-width: 992px) { .h1 { font-size: 56px; } } /* Desktop */
+
+/* H2 */
+.h2 { font-size: 40px; } /* Mobile & Tablet */
+@media (min-width: 992px) { .h2 { font-size: 48px; } } /* Desktop */
+
+/* H3 */
+.h3 { font-size: 32px; } /* Mobile */
+@media (min-width: 768px) { .h3 { font-size: 40px; } } /* Tablet & Desktop */
+
+/* H4 */
+.h4 { font-size: 24px; } /* Mobile */
+@media (min-width: 768px) { .h4 { font-size: 32px; } } /* Tablet & Desktop */
+
+/* H5 */
+.h5 { font-size: 24px; } /* Todos los breakpoints */
+
+/* H6 */
+.h6 { font-size: 20px; } /* Todos los breakpoints */
+
+/* H7 */
+.h7 { font-size: 18px; } /* Todos los breakpoints */
+
+/* H8 */
+.h8 { font-size: 16px; } /* Todos los breakpoints */
+
+/* Estilo para párrafos y cuerpo de texto */
+.body-text, p {
+  font-family: var(--font-family-product);
+  font-weight: 400; /* Regular */
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* --- 4. Estilos de Color para Tipografía --- */
+
+/* Clases de utilidad para aplicar los colores de texto según la jerarquía.
+  Usan las variables de color que definimos previamente.
+*/
+
+.text-primary-hierarchy {
+  color: var(--bb-gray-carbon-900);
+}
+
+.text-secondary-hierarchy {
+  color: var(--bb-gray-carbon-800);
+}
+
+.text-inactive {
+  color: var(--bb-gray-carbon-600);
+}
+
+.text-interactive {
+  color: var(--bb-blue-midnight-800);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.text-interactive:hover {
+  color: var(--bb-blue-midnight-900);
+}
+
+.text-error {
+  color: var(--bb-semantic-error-800);
+}
+
+.text-success {
+  color: var(--bb-semantic-success-800);
+}
+
+.text-warning {
+  color: var(--bb-semantic-warning-800);
+}

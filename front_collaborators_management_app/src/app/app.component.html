@@ -1,2 +1,28 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+
+<nav class="navbar navbar-expand-lg app-navbar shadow-sm">
+  <div class="container-fluid">
+
+    <a class="navbar-brand app-navbar-brand" href="#">
+      Portal de Nuevos Colaboradores BDB
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link app-nav-link" href="#" aria-current="page">
+            Colaboradores
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link app-nav-link" href="/sessions" >
+            Sesiones de OnBoarding
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="container mt-4">
+  <router-outlet></router-outlet>
+</main>

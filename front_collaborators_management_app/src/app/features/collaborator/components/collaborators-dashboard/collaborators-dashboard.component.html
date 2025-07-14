@@ -1,0 +1,86 @@
+<div class="dashboard-container">
+  <h2 class="h4 text-primary-hierarchy mb-4">Gestión de Colaboradores</h2>
+
+  <div class="card filter-card mb-4">
+    <div class="row g-3 align-items-end">
+      <div class="col-md-4">
+        <label for="generalStatus" class="form-label text-secondary-hierarchy">Filtrar por Estado OnBoarding General</label>
+        <select id="generalStatus" class="form-select" [(ngModel)]="generalStatusFilter" (change)="applyFilters()">
+          <option value="">Todos los estados</option>
+          <option *ngFor="let status of filterStatusOptions" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="technicalStatus" class="form-label text-secondary-hierarchy">Filtrar por Estado OnBoarding Técnico</label>
+        <select id="technicalStatus" class="form-select" [(ngModel)]="technicalStatusFilter" (change)="applyFilters()">
+          <option value="">Todos los estados</option>
+          <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-secondary w-100" (click)="clearFilters()">Limpiar Filtros</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-header">
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Fecha Ingreso</th>
+          <th>Onboarding General</th>
+          <th>Onboarding Técnico</th>
+          <th>Fecha Onboarding Técnico</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let collaborator of filteredCollaborators"
+            (click)="selectCollaborator(collaborator)"
+            [class.table-active]="selectedCollaborator?.id === collaborator.id">
+          <td>{{ collaborator.fullName }}</td>
+          <td>{{ collaborator.email }}</td>
+          <td>{{ collaborator.startDate | date:'dd/MM/yyyy' }}</td>
+          <td>
+            @if(collaborator.welcomeStatus === OnboardingStatus.SIN_ASIGNAR) {
+              <span class="text-secondary">{{OnboardingStatus.SIN_ASIGNAR}}</span>
+            } @else {
+              <select class="form-select form-select-sm"
+                    [ngModel]="collaborator.welcomeStatus"
+                    (ngModelChange)="onStatusChange(collaborator, $event, 'general')"
+                    (click)="$event.stopPropagation()">
+              <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+               </select>
+            }
+          </td>
+          <td>
+            @if(collaborator.technicalStatus === OnboardingStatus.SIN_ASIGNAR) {
+              <span class="text-secondary">{{OnboardingStatus.SIN_ASIGNAR}}</span>
+            } @else {
+              <select class="form-select form-select-sm"
+                    [ngModel]="collaborator.technicalStatus"
+                    (ngModelChange)="onStatusChange(collaborator, $event, 'tecnico')"
+                    (click)="$event.stopPropagation()">
+                <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+              </select>
+            }
+
+          </td>
+          <td>{{ collaborator.technicalOnboardingEndDate ?
+            (collaborator.technicalOnboardingStartDate | date:'dd/MM/yyyy')+" - "+(collaborator.technicalOnboardingEndDate | date:'dd/MM/yyyy')
+            : 'N/A' }}</td>
+        </tr>
+        <tr *ngIf="filteredCollaborators.length === 0">
+          <td colspan="6" class="text-center p-4 text-inactive">No se encontraron colaboradores.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-end mt-3 action-buttons">
+    <button class="btn btn-primary" (click)="createCollaborator()">Crear</button>
+    <button class="btn btn-secondary" (click)="updateCollaborator()" [disabled]="!selectedCollaborator">Actualizar</button>
+    <button class="btn btn-danger" (click)="deleteCollaborator()" [disabled]="!selectedCollaborator">Eliminar</button>
+  </div>
+</div>

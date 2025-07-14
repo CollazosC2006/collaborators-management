@@ -1,0 +1,70 @@
+<div class="form-container">
+  <h2 class="h5 text-primary-hierarchy mb-2">Crear / Editar Colaborador</h2>
+
+  <form (ngSubmit)="onSubmit()" #collaboratorForm="ngForm">
+    <div class="card form-card">
+      <div class="row g-2">
+        <div class="col-12">
+          <h3 class="h6 text-primary-hierarchy border-bottom pb-2 mb-3">Datos Personales</h3>
+        </div>
+        <div class="col-md-6">
+          <label for="nombre" class="form-label">Nombre Completo</label>
+          <input type="text" id="nombre" name="nombre" class="form-control" [(ngModel)]="collaborator.fullName" required>
+        </div>
+        <div class="col-md-6">
+          <label for="correo" class="form-label">Correo Electrónico</label>
+          <input type="email" id="correo" name="correo" class="form-control" [(ngModel)]="collaborator.email" required email [disabled]="isEditMode">
+        </div>
+        <div class="col-md-6">
+          <label for="fechaIngreso" class="form-label">Fecha de Ingreso</label>
+          <input type="date" id="fechaIngreso" name="fechaIngreso" class="form-control" [(ngModel)]="collaborator.startDate" required>
+        </div>
+
+        <div class="col-12 mt-5">
+          <h3 class="h6 text-primary-hierarchy border-bottom pb-2 mb-3">Asignación de Onboarding</h3>
+        </div>
+
+        <div class="form-card__onboarding">
+          <div class="col-md-6">
+            <label for="generalSession" class="form-label">Onboarding General</label>
+            <select id="generalSession" name="generalSession" class="form-select" [(ngModel)]="selectedGeneralSessionId" (change)="onSessionChange('general')">
+              <option [ngValue]="null">No asignar</option>
+              <option *ngFor="let session of generalSessions" [value]="session.id">
+                {{ session.onboardingType.name }} ({{ session.startDate | date:'dd/MM/yy' }} - {{ session.endDate | date:'dd/MM/yy' }})
+              </option>
+            </select>
+          </div>
+          <div class="col-md-6" *ngIf="selectedGeneralSessionId">
+            <label for="generalStatus" class="form-label">Estado del Onboarding</label>
+            <select id="generalStatus" name="generalStatus" class="form-select" [(ngModel)]="collaborator.welcomeStatus">
+              <option *ngFor="let status of assignmentStatusOptions" [value]="status">{{ status }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-card__onboarding">
+          <div class="col-md-6">
+            <label for="technicalSession" class="form-label">Onboarding Técnico</label>
+            <select id="technicalSession" name="technicalSession" class="form-select" [(ngModel)]="selectedTechnicalSessionId" (change)="onSessionChange('tecnico')">
+              <option [ngValue]="null">No asignar</option>
+              <option *ngFor="let session of technicalSessions" [value]="session.id">
+                {{ session.onboardingType.name }} ({{ session.startDate | date:'dd/MM/yy' }} - {{ session.endDate | date:'dd/MM/yy' }})
+              </option>
+            </select>
+          </div>
+          <div class="col-md-6" *ngIf="selectedTechnicalSessionId">
+            <label for="technicalStatus" class="form-label">Estado del Onboarding</label>
+            <select id="technicalStatus" name="technicalStatus" class="form-select" [(ngModel)]="collaborator.technicalStatus">
+              <option *ngFor="let status of assignmentStatusOptions" [value]="status">{{ status }}</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+       <div class="d-flex justify-content-end mt-1 action-buttons">
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!collaboratorForm.form.valid">Guardar Colaborador</button>
+      </div>
+    </div>
+  </form>
+</div>

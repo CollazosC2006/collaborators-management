@@ -85,7 +85,7 @@ export class OnboardingCalendarComponent implements OnInit, OnDestroy {
 
       return {
         id: session.id.toString(),
-        title: session.onboardingType.name + " (id: " + session.onboardingType.id + ")",
+        title: session.onboardingType.name + " (id: " + session.id + ")",
         start: session.startDate,
         end: endDate.toISOString().split('T')[0], // Format YYYY-MM-DD
         backgroundColor: session.onboardingType.category === 'general'

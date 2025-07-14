@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CollaboratorDataService } from '../../services/collaborator-data.service';
 import { CollaboratorService } from '../../services/collaborator.service';
+import { CollaboratorAssignmentService } from '../../services/collaborator-assignment.service';
 
 @Component({
   selector: 'app-collaborators-dashboard',
@@ -36,7 +37,8 @@ export class CollaboratorsDashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private collaboratorDataService: CollaboratorDataService,
-    private collaboratorService: CollaboratorService
+    private collaboratorService: CollaboratorService,
+    private assignmentService: CollaboratorAssignmentService
   ) {}
 
 
@@ -81,6 +83,19 @@ export class CollaboratorsDashboardComponent implements OnInit {
     if (!this.selectedCollaborator || !this.selectedCollaborator.id) return;
 
     if (confirm(`¿Estás seguro de que deseas eliminar a ${this.selectedCollaborator.fullName}?`)) {
+      if(this.selectedCollaborator.generalSessionId) {
+        this.assignmentService.unassign(this.selectedCollaborator.id,this.selectedCollaborator.generalSessionId).subscribe({
+          next: () => console.log('Desasignación de sesión general exitosa'),
+          error: (err) => console.error('Error al desasignar sesión general', err)
+        });
+      }
+      if(this.selectedCollaborator.technicalSessionId) {
+        this.assignmentService.unassign(this.selectedCollaborator.id, this.selectedCollaborator.technicalSessionId).subscribe({
+          next: () => console.log('Desasignación de sesión técnica exitosa'),
+          error: (err) => console.error('Error al desasignar sesión técnica', err)
+        });
+      }
+
       this.collaboratorService.deleteCollaborator(this.selectedCollaborator.id).subscribe({
         next: () => {
           console.log('Colaborador eliminado exitosamente');

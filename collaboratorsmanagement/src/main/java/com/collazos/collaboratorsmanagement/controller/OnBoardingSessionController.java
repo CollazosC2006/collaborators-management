@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/sessions")
+@CrossOrigin(origins = "http://localhost:4200")
 public class OnBoardingSessionController {
 
     @Autowired

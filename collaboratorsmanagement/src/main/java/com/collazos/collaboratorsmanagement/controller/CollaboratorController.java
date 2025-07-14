@@ -1,5 +1,6 @@
 package com.collazos.collaboratorsmanagement.controller;
 
+import com.collazos.collaboratorsmanagement.dto.CollaboratorDetailDTO;
 import com.collazos.collaboratorsmanagement.entity.Collaborator;
 import com.collazos.collaboratorsmanagement.service.CollaboratorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/collaborators")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CollaboratorController {
 
     @Autowired
@@ -24,15 +26,15 @@ public class CollaboratorController {
 
     // GET /api/collaborators -> Obtener todos los colaboradores
     @GetMapping
-    public ResponseEntity<List<Collaborator>> getAllCollaborators() {
-        List<Collaborator> collaborators = collaboratorService.getAllCollaborators();
+    public ResponseEntity<List<CollaboratorDetailDTO>> getAllCollaborators() {
+        List<CollaboratorDetailDTO> collaborators = collaboratorService.getAllCollaborators();
         return ResponseEntity.ok(collaborators);
     }
 
     // GET /api/collaborators/{id} -> Obtener un colaborador por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Collaborator> getCollaboratorById(@PathVariable Integer id) {
-        return collaboratorService.getCollaboratorById(id)
+    public ResponseEntity<CollaboratorDetailDTO> getCollaboratorById(@PathVariable Integer id) {
+        return collaboratorService.getCollaboratorDetailsById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
